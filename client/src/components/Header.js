@@ -72,6 +72,7 @@ const Header = () => {
           <MDBBtn
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            onSubmit={handleSubmit}
             rippleColor='dark'
           >
             <MDBIcon icon='search' />
