@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   MDBCard,
   MDBCardBody,
   MDBValidation,
   MDBBtn,
   MDBInput,
-} from "mdb-react-ui-kit";
-import ChipInput from "material-ui-chip-input";
-import FileBase from "react-file-base64";
-import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createTour, updateTour } from "../redux/features/tourSlice";
+} from 'mdb-react-ui-kit';
+import ChipInput from 'material-ui-chip-input';
+import FileBase from 'react-file-base64';
+import { toast } from 'react-toastify';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createTour, updateTour } from '../redux/features/tourSlice';
 
 const initialState = {
-  title: "",
-  description: "",
+  title: '',
+  description: '',
   tags: [],
 };
 
@@ -48,7 +48,7 @@ const AddEditTour = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!tags.length) {
-      setTagErrMsg("Please provide some tags");
+      setTagErrMsg('Please provide some tags');
     }
     if (title && description && tags) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
@@ -76,80 +76,82 @@ const AddEditTour = () => {
     });
   };
   const handleClear = () => {
-    setTourData({ title: "", description: "", tags: [] });
+    setTourData({ title: '', description: '', tags: [] });
   };
   return (
     <div
       style={{
-        margin: "auto",
-        padding: "15px",
-        maxWidth: "450px",
-        alignContent: "center",
-        marginTop: "120px",
+        margin: 'auto',
+        padding: '15px',
+        maxWidth: '450px',
+        alignContent: 'center',
+        marginTop: '120px',
       }}
-      className="container"
+      className='container'
     >
-      <MDBCard alignment="center">
-        <h5>{id ? "Update Tour" : "Add Tour"}</h5>
+      <MDBCard alignment='center'>
+        <div style={{ paddingTop: '2rem' }}>
+          <h5>{id ? 'Update Tour' : 'Add Tour'}</h5>
+        </div>
         <MDBCardBody>
-          <MDBValidation onSubmit={handleSubmit} className="row g-3" noValidate>
-            <div className="col-md-12">
+          <MDBValidation onSubmit={handleSubmit} className='row g-3' noValidate>
+            <div className='col-md-12'>
               <MDBInput
-                placeholder="Enter Title"
-                type="text"
-                value={title || ""}
-                name="title"
+                label='Enter Title'
+                type='text'
+                value={title || ''}
+                name='title'
                 onChange={onInputChange}
-                className="form-control"
+                className='form-control'
                 required
                 invalid
-                validation="Please provide title"
+                validation='Please provide title'
               />
             </div>
-            <div className="col-md-12">
+            <div className='col-md-12'>
               <MDBInput
-                placeholder="Enter Description"
-                type="text"
+                label='Enter Description'
+                type='text'
                 value={description}
-                name="description"
+                name='description'
                 onChange={onInputChange}
-                className="form-control"
+                className='form-control'
                 required
                 invalid
                 textarea
                 rows={4}
-                validation="Please provide description"
+                validation='Please provide description'
               />
             </div>
-            <div className="col-md-12">
+            <div className='col-md-12'>
               <ChipInput
-                name="tags"
-                variant="outlined"
-                placeholder="Enter Tag"
+                label='tags'
+                variant='outlined'
+                placeholder='Enter Tag'
                 fullWidth
                 value={tags}
                 onAdd={(tag) => handleAddTag(tag)}
                 onDelete={(tag) => handleDeleteTag(tag)}
               />
-              {tagErrMsg && <div className="tagErrMsg">{tagErrMsg}</div>}
+              {tagErrMsg && <div className='tagErrMsg'>{tagErrMsg}</div>}
             </div>
-            <div className="d-flex justify-content-start">
+            <div className='d-flex justify-content-start'>
               <FileBase
-                type="file"
+                type='file'
                 multiple={false}
                 onDone={({ base64 }) =>
                   setTourData({ ...tourData, imageFile: base64 })
                 }
               />
             </div>
-            <div className="col-12">
-              <MDBBtn style={{ width: "100%" }}>
-                {id ? "Update" : "Submit"}
+            <div className='col-12'>
+              <MDBBtn style={{ width: '100%' }}>
+                {id ? 'Update' : 'Submit'}
               </MDBBtn>
               <MDBBtn
-                style={{ width: "100%" }}
-                className="mt-2"
-                color="danger"
+                style={{ width: '100%' }}
+                className='mt-2'
+                color='danger'
                 onClick={handleClear}
               >
                 Clear

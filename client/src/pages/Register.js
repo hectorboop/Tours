@@ -57,8 +57,10 @@ const Register = () => {
       }}
     >
       <MDBCard alignment='center'>
-        <MDBIcon fas icon='user-circle' className='fa-2x' />
-        <h5>Sign Up</h5>
+        <div style={{ margin: '1.5rem' }}>
+          <MDBIcon fas icon='user-circle' className='fa-2x' />
+          <h5>Sign Up</h5>
+        </div>
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} noValidate className='row g-3'>
             <div className='col-md-6'>
@@ -111,14 +113,14 @@ const Register = () => {
             </div>
             <div className='col-md-12'>
               <MDBInput
-                label='Password Confirm'
+                label='Confirm Password'
                 type='password'
                 value={confirmPassword}
                 name='confirmPassword'
                 onChange={onInputChange}
                 required
                 invalid
-                validation='Please provide confirm password'
+                validation='Please confirm password'
               />
             </div>
             <div className='col-12'>

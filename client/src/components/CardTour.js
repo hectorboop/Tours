@@ -9,6 +9,7 @@ import {
   MDBBtn,
   MDBIcon,
   MDBTooltip,
+  MDBCardFooter,
 } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -79,33 +80,40 @@ const CardTour = ({
           position='top'
           style={{ maxWidth: '100%', height: '180px' }}
         />
-        <div className='top-left'>{name}</div>
-        <span className='text-start tag-card'>
-          {tags.map((tag) => (
-            <Link to={`/tours/tag/${tag}`}> #{tag}</Link>
-          ))}
-          <MDBBtn
-            style={{ float: 'right' }}
-            tag='a'
-            color='none'
-            onClick={!user?.result ? null : handleLike}
-          >
-            {!user?.result ? (
-              <MDBTooltip title='Please login to like tour' tag='a'>
-                <Likes />
-              </MDBTooltip>
-            ) : (
-              <Likes />
-            )}
-          </MDBBtn>
-        </span>
         <MDBCardBody>
           <MDBCardTitle className='text-start'>{title}</MDBCardTitle>
           <MDBCardText className='text-start'>
             {excerpt(description)}
-            <Link to={`/tour/${_id}`}>Read More</Link>
           </MDBCardText>
         </MDBCardBody>
+        <MDBCardFooter className='text-start'>
+          <small className='text-muted'>
+            {name}
+            <span />{' '}
+            <Link to={`/tour/${_id}`}>
+              <MDBIcon className='ms-1' icon='eye' size='sm' />
+              <span /> View Tour
+            </Link>
+            <span />{' '}
+            {tags.map((tag) => (
+              <Link to={`/tours/tag/${tag}`}> #{tag}</Link>
+            ))}
+            <MDBBtn
+              style={{ float: 'right' }}
+              tag='a'
+              color='none'
+              onClick={!user?.result ? null : handleLike}
+            >
+              {!user?.result ? (
+                <MDBTooltip title='Please login to like tour' tag='a'>
+                  <Likes />
+                </MDBTooltip>
+              ) : (
+                <Likes />
+              )}
+            </MDBBtn>
+          </small>
+        </MDBCardFooter>
       </MDBCard>
     </MDBCardGroup>
   );

@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import { useDispatch } from 'react-redux';
 import { setUser } from './redux/features/authSlice';
 import AddEditTour from './pages/AddEditTour';
@@ -61,6 +62,7 @@ function App() {
           />
           <Route path='*' element={<NotFound />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

@@ -34,20 +34,29 @@ const Home = () => {
     <div
       style={{
         margin: 'auto',
-        padding: '15px',
+        padding: '0px',
+        paddingTop: '40px',
         maxWidth: '1000px',
         alignContent: 'center',
       }}
     >
       <MDBRow className='mt-5'>
         {tours.length === 0 && location.pathname === '/' && (
-          <MDBTypography className='text-center mb-0' tag='h2'>
+          <MDBTypography
+            className='text-center mb-0'
+            tag='h2'
+            style={{ margin: '40px' }}
+          >
             No Tours Found
           </MDBTypography>
         )}
 
         {tours.length === 0 && location.pathname !== '/' && (
-          <MDBTypography className='text-center mb-0' tag='h2'>
+          <MDBTypography
+            className='text-center mb-0'
+            tag='h2'
+            style={{ margin: '40px' }}
+          >
             We couldn't find any matches for "{searchQuery}"
           </MDBTypography>
         )}

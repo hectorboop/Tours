@@ -9,6 +9,9 @@ import {
   MDBNavbarToggler,
   MDBCollapse,
   MDBNavbarBrand,
+  MDBInput,
+  MDBBtn,
+  MDBInputGroup,
 } from 'mdb-react-ui-kit';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogout } from '../redux/features/authSlice';
@@ -47,13 +50,13 @@ const Header = () => {
   };
 
   return (
-    <MDBNavbar fixed='top' expand='lg' style={{ backgroundColor: '#f0e6ea' }}>
+    <MDBNavbar fixed='top' expand='lg' light bgColor='light'>
       <MDBContainer>
         <MDBNavbarBrand
           href='/'
           style={{ color: '#606080', fontWeight: '600', fontSize: '22px' }}
         >
-          Touropedia
+          Tours
         </MDBNavbarBrand>
         <MDBNavbarToggler
           type='button'
@@ -64,28 +67,53 @@ const Header = () => {
         >
           <MDBIcon icon='bars' fas />
         </MDBNavbarToggler>
+        <MDBInputGroup>
+          <MDBInput label='Search Tours' />
+          <MDBBtn
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            rippleColor='dark'
+          >
+            <MDBIcon icon='search' />
+          </MDBBtn>
+        </MDBInputGroup>
+
         <MDBCollapse show={show} navbar>
           <MDBNavbarNav right fullWidth={false} className='mb-2 mb-lg-0'>
             {user?.result?._id && (
-              <h5 style={{ marginRight: '30px', marginTop: '27px' }}>
-                Logged in as: {user?.result?.name}
+              <h5
+                style={{
+                  margin: '2rem',
+                }}
+              >
+                {user?.result?.name}
               </h5>
             )}
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/'>
-                <p className='header-text'>Home</p>
-              </MDBNavbarLink>
-            </MDBNavbarItem>
             {user?.result?._id && (
               <>
                 <MDBNavbarItem>
                   <MDBNavbarLink href='/addTour'>
-                    <p className='header-text'>Add Tour</p>
+                    <MDBBtn
+                      className='header-text'
+                      style={{
+                        marginTop: '1rem',
+                      }}
+                    >
+                      AddTour
+                    </MDBBtn>
                   </MDBNavbarLink>
                 </MDBNavbarItem>
                 <MDBNavbarItem>
                   <MDBNavbarLink href='/dashboard'>
-                    <p className='header-text'>Dashboard</p>
+                    <MDBBtn
+                      className='header-text'
+                      color='info'
+                      style={{
+                        marginTop: '1rem',
+                      }}
+                    >
+                      Dashboard
+                    </MDBBtn>
                   </MDBNavbarLink>
                 </MDBNavbarItem>
               </>
@@ -93,31 +121,28 @@ const Header = () => {
             {user?.result?._id ? (
               <MDBNavbarItem>
                 <MDBNavbarLink href='/login'>
-                  <p className='header-text' onClick={() => handleLogout()}>
+                  <MDBBtn
+                    className='header-text'
+                    color='danger'
+                    style={{
+                      marginTop: '1rem',
+                    }}
+                    onClick={() => handleLogout()}
+                  >
                     Logout
-                  </p>
+                  </MDBBtn>
                 </MDBNavbarLink>
               </MDBNavbarItem>
             ) : (
               <MDBNavbarItem>
                 <MDBNavbarLink href='/login'>
-                  <p className='header-text'>Login</p>
+                  <MDBBtn className='header-text' outline>
+                    Login
+                  </MDBBtn>
                 </MDBNavbarLink>
               </MDBNavbarItem>
             )}
           </MDBNavbarNav>
-          <form className='d-flex input-group w-auto' onSubmit={handleSubmit}>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Search Tour'
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <div style={{ marginTop: '5px', marginLeft: '5px' }}>
-              <MDBIcon fas icon='search' />
-            </div>
-          </form>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>

@@ -66,8 +66,10 @@ const Login = () => {
       }}
     >
       <MDBCard alignment='center'>
-        <MDBIcon fas icon='user-circle' className='fa-2x' />
-        <h5>Sign In</h5>
+        <div style={{ margin: '1.5rem' }}>
+          <MDBIcon fas icon='user-circle' className='fa-2x' />
+          <h5>Sign In</h5>
+        </div>
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} noValidate className='row g-3'>
             <div className='col-md-12'>
