@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import UserModel from '../models/user.js';
 
-const secret = 'test'; //put secret in .env file
+const secret = process.env.SECRET; //put secret in .env file
 
 // Sign In Method
 export const signin = async (req, res) => {
